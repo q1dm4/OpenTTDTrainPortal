@@ -1,0 +1,5 @@
+##grflangid 0x01
+STR_GRF_NAME :Teleport Gateway — graphics preview 0.1
+STR_GRF_DESCRIPTION :Blue energy gateway station graphics. Requires a custom engine for teleportation. This preview does not teleport trains.
+STR_CLASS :Energy gateways
+STR_GATEWAY :Drive-through energy gateway (graphics preview)

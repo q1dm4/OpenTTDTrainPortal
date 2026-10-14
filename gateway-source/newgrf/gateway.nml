@@ -1,0 +1,107 @@
+// SPDX-License-Identifier: GPL-2.0-only
+// Stable GRFID TGW01 and station ID 0 are the engine identification contract.
+grf {
+    grfid: "TGW\01";
+    name: string(STR_GRF_NAME);
+    desc: string(STR_GRF_DESCRIPTION);
+    version: 1;
+    min_compatible_version: 1;
+}
+// GENERATED SPRITES
+spriteset (gateway_frame_0, "gateway.png") {
+    [0, 0, 64, 80, -31, -64]
+    [64, 0, 64, 80, -31, -64]
+    [128, 0, 64, 80, -31, -64]
+    [192, 0, 64, 80, -31, -64]
+}
+spriteset (gateway_frame_1, "gateway.png") {
+    [0, 80, 64, 80, -31, -64]
+    [64, 80, 64, 80, -31, -64]
+    [128, 80, 64, 80, -31, -64]
+    [192, 80, 64, 80, -31, -64]
+}
+spriteset (gateway_frame_2, "gateway.png") {
+    [0, 160, 64, 80, -31, -64]
+    [64, 160, 64, 80, -31, -64]
+    [128, 160, 64, 80, -31, -64]
+    [192, 160, 64, 80, -31, -64]
+}
+spriteset (gateway_frame_3, "gateway.png") {
+    [0, 240, 64, 80, -31, -64]
+    [64, 240, 64, 80, -31, -64]
+    [128, 240, 64, 80, -31, -64]
+    [192, 240, 64, 80, -31, -64]
+}
+spriteset (gateway_frame_4, "gateway.png") {
+    [0, 320, 64, 80, -31, -64]
+    [64, 320, 64, 80, -31, -64]
+    [128, 320, 64, 80, -31, -64]
+    [192, 320, 64, 80, -31, -64]
+}
+spriteset (gateway_frame_5, "gateway.png") {
+    [0, 400, 64, 80, -31, -64]
+    [64, 400, 64, 80, -31, -64]
+    [128, 400, 64, 80, -31, -64]
+    [192, 400, 64, 80, -31, -64]
+}
+spriteset (gateway_frame_6, "gateway.png") {
+    [0, 480, 64, 80, -31, -64]
+    [64, 480, 64, 80, -31, -64]
+    [128, 480, 64, 80, -31, -64]
+    [192, 480, 64, 80, -31, -64]
+}
+spriteset (gateway_frame_7, "gateway.png") {
+    [0, 560, 64, 80, -31, -64]
+    [64, 560, 64, 80, -31, -64]
+    [128, 560, 64, 80, -31, -64]
+    [192, 560, 64, 80, -31, -64]
+}
+spritelayout gateway_X {
+    ground { sprite: 1012; }
+    building { sprite: DEFAULT(0); xoffset: 0; yoffset: 0; zoffset: 0; xextent: 16; yextent: 4; zextent: 48; }
+    building { sprite: DEFAULT(1); xoffset: 0; yoffset: 12; zoffset: 0; xextent: 16; yextent: 4; zextent: 48; }
+}
+spritelayout gateway_Y {
+    ground { sprite: 1011; }
+    building { sprite: DEFAULT(2); xoffset: 0; yoffset: 0; zoffset: 0; xextent: 16; yextent: 4; zextent: 48; }
+    building { sprite: DEFAULT(3); xoffset: 0; yoffset: 12; zoffset: 0; xextent: 16; yextent: 4; zextent: 48; }
+}
+spritegroup gateway_group_0 { little: gateway_frame_0; lots: gateway_frame_0; }
+spritegroup gateway_group_1 { little: gateway_frame_1; lots: gateway_frame_1; }
+spritegroup gateway_group_2 { little: gateway_frame_2; lots: gateway_frame_2; }
+spritegroup gateway_group_3 { little: gateway_frame_3; lots: gateway_frame_3; }
+spritegroup gateway_group_4 { little: gateway_frame_4; lots: gateway_frame_4; }
+spritegroup gateway_group_5 { little: gateway_frame_5; lots: gateway_frame_5; }
+spritegroup gateway_group_6 { little: gateway_frame_6; lots: gateway_frame_6; }
+spritegroup gateway_group_7 { little: gateway_frame_7; lots: gateway_frame_7; }
+switch(FEAT_STATIONS, SELF, gateway_animation, animation_frame) {
+    0: gateway_group_0;
+    1: gateway_group_1;
+    2: gateway_group_2;
+    3: gateway_group_3;
+    4: gateway_group_4;
+    5: gateway_group_5;
+    6: gateway_group_6;
+    7: gateway_group_7;
+    gateway_group_0;
+}
+item(FEAT_STATIONS, energy_gateway, 0) {
+    property {
+        class: "TGWY";
+        classname: string(STR_CLASS);
+        name: string(STR_GATEWAY);
+        disabled_platforms: bitmask(2,3,4,5,6,7,8);
+        disabled_length: bitmask(2,3,4,5,6,7,8);
+        tile_flags: [0,0];
+        animation_info: [ANIMATION_LOOPING,8];
+        animation_speed: 3;
+        animation_triggers: bitmask(ANIM_TRIGGER_STAT_BUILT);
+    }
+    graphics {
+        sprite_layouts: [gateway_X,gateway_Y];
+        select_tile_type: 0;
+        anim_control: 0;
+        purchase: gateway_frame_0;
+        gateway_animation;
+    }
+}
